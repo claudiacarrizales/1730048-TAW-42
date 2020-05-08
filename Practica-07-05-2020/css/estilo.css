@@ -1,0 +1,53 @@
+a{
+	font-weight: bold;
+	color: blue;
+}
+
+.contenedor{
+	border-radius: 0%;
+    width: 800px;
+    margin: auto;
+    border: black 2px solid;
+    background-color: pink;
+}
+
+body{
+	width: auto;
+ 	background-color: white;
+  	margin: auto;
+  	justify-content:all;
+  	text-align: justify;
+  	font-size: 15px;
+  	text-align: center;
+}
+
+nav{
+	background-color: pink;
+	padding: 3%;
+	width: auto;
+	height: 50px;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table .head{
+    background: white;
+}
+table .head td{
+    color: black;
+    font-family: 'Arial',sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    text-align: center;
+}
+rgb(3, 113, 163)
+table tr td{
+    border:1px solid #ccc;
+    padding: 7px;
+    font-size: 14px;
+    color: black;
+}
+
