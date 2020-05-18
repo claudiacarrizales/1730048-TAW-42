@@ -23,6 +23,72 @@
 			}
 			$stmt->cose();
 		}
+		//modelo ingresoUsuarioModel login
+		public function ingresoUsuarioModel($datosModel, $tabla){
+			$stmt = Conexion::conectar()->prepare("SELECT usuario, password FROM $tabla WHERE usuario=:usuario");
+			$stmt = bindParam(":usuario", $datosModel["usuario"], PDO::PARAM_sTR);
+
+			$stmt = execute();
+
+			//fetch () obtiene una fila de un conjunto de resultados asociado al objeto $stmt
+			return $stmt->fetch();
+
+			$stmt->close(); 
+		}
+		//MODELO VISTA USUARIO
+		public function vistaUsuariosModel($tabla){
+			$stmt = Conexion::conectar()->prepare("SELECT id, usuario, password, email FROM $tabla");
+			$stmt->execute();
+
+			//fetchAll(): obtiene todas las filas de un conjunto de resultados asociado al objeto PDO stmt
+			return $stmt->fetchAll();
+
+			$stmt->close();
+		}
+
+		//MODELO EDITAR USUARIO
+		public function editarUsuarioModel($datosModel, $tabla){
+			$stmt = Conexion::conectar()->prepare ("SELECT id, usuario, password, email FROM $tabla WHERE id=:id");
+
+			$stmt->bindParam(":id", $datosModel, PDO::PARAM_INT);
+
+			$stmt->execute();
+
+			return $stmt->fetch();
+
+			$stmt->close();
+		}
+		//MODELO ACTUALIZAR USUARIOS
+		public function actualizarUsuarioModel($datosModel, $tabla){
+			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET usuario=:usuario, password=:password, email=:email WHERE id=:id");
+
+			$stmt->bindParam(":usuario", $datosModel["usuario"], PDO::PARAM_STR);
+			$stmt->bindParam(":password", $datosModel["password"], PDO::PARAM_STR);
+			$stmt->bindParam(":email", $datosModel["email"], PDO::PARAM_STR);
+			$stmt->bindParam(":id", $datosModel["id"], PDO::PARAM_INT);
+
+			if($stmt->execute()){
+				return "secces";
+			}else{
+				return "error";
+			}
+			$stmt->close();
+		}
+
+		//MODELO BORRAR USUARIO
+		public function borrarUsuarioModel($datosModel, $tabla){
+			$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id=:id");
+
+			$stmt->bindParam(":id", $datosModel, PDO::PARAM_INT);
+
+			if($stmt->execute()){
+				return "secces";
+			}else{
+				return "error";
+			}
+			$stmt->close();
+		}
+
 	}
 
 ?>

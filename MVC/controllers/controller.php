@@ -3,7 +3,7 @@
 		#llamada a la plantlla
 		#metodo pagina
 		public function pagina(){
-			include"views/templete.php";
+			include"views/template.php";
 		}
 		//enlaces a la pagina
 		public function enlacesPaginasController(){
@@ -111,8 +111,8 @@
 		}
 		//LISTA DE MÉTODOS DE MODELOS POR DESARROLLAR
 		/*
-			1. registroUsuarioMOdel
-			2. ingresoUsuarioModel
+			1. registroUsuarioMOdel  - listo
+			2. ingresoUsuarioModel  - listo
 			3. vistaUsuarioModel
 			4. editarUsuarioModel
 			5. actualizarUsuarioModel
