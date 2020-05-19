@@ -7,7 +7,7 @@ class Paginas{
 
     public function enlacesPaginasModel($enlacesModel){
         //Validamos
-        if($enlacesModel == "salir" || $enlacesModel == "editar" || $enlacesModel == "ingresar" || $enlacesModel == "usuarios" || $enlacesModel == "eliminar" || $enlacesModel == "registroProducto" || $enlacesModel == "productos" ){
+        if($enlacesModel == "salir" || $enlacesModel == "editar" || $enlacesModel == "ingresar" || $enlacesModel == "usuarios" || $enlacesModel == "eliminar" || $enlacesModel == "registroProducto" || $enlacesModel == "productos" || $enlacesModel == "editarProducto" || $enlacesModel == "eliminarProducto" || $enlacesModel == "categoriaProducto"){
             //Mostramos el URL concatenado con la variable $enlacesModel
             $module = "views/modules/".$enlacesModel.".php";
         }

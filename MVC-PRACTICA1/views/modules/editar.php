@@ -1,7 +1,5 @@
 
 <!--Forumario donde se editaran los datos de un usuario previamente registrado-->
-<h1>EDITAR DATOS DEL USUARIO</h1>
-
 <?php
 
     $r = array();
@@ -11,19 +9,37 @@
 ?>
 
 <!--Formulario en donde se ponen los datos existentes para que el usuario los edite y luego los guarde con el boton-->
-<form method="post">
+<section class="resume-section p-3 p-lg-8 d-flex align-items-center" id="interests">
+    <div class="w-100">
+        <h2 class="mb-8">EDITAR DATOS DEL USUARIO</h2>
+        <!--Formulario de inicio-->
 
-    <input type="text" name="id" value="<?= $r[0]['id'] ?>" disabled>
+		<form method="post">
+		
+		  <div class="form-group">
+		    <label for="exampleInputEmail1"><strong>Id</strong></label>
+		    <input type="text" class="form-control" name="id" value="<?= $r[0]['id'] ?>" disabled>
+		  </div>
 
-    <input type="text" placeholder="usuario" name="usuario" value="<?= $r[0]['usuario'] ?>" required>
+		  <div class="form-group">
+		    <label for="exampleInputEmail1"><strong>Usuario</strong></label>
+		    <input type="text" class="form-control" placeholder="usuario" name="usuario" value="<?= $r[0]['usuario'] ?>" required>
+		  </div>
 
-    <input type="password" placeholder="contraseña" name="password" value="<?= $r[0]['password'] ?>" required>
+		  <div class="form-group">
+		    <label for="exampleInputEmail1"><strong>Contraseña</strong></label>
+		    <input type="password" class="form-control" placeholder="contraseña" name="password" value="<?= $r[0]['password'] ?>" required>
+		  </div>
 
-    <input type="email" placeholder="email" name="email" value="<?= $r[0]['email'] ?>" required>
-
-    <input type="submit" value="Actualizar">
-
-</form>
+		  <div class="form-group">
+		    <label for="exampleInputEmail1"><strong>Email</strong></label>
+		     <input type="email" class="form-control" placeholder="email" name="email" value="<?= $r[0]['email'] ?>" required>
+		  </div>
+		 
+		 	<input type="submit" class="btn btn-primary" value="Actualizar">
+		</form>
+    </div>
+</section>
 
 <?php
 
