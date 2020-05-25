@@ -19,6 +19,31 @@
             include_once('vistas/index.php');
             include_once('vistas/footer.php');
         }
+        
+        function carreraTable(){
+            $query =$this->model_e->getCarrera();
+
+            include_once('vistas/header.php');
+            include_once('vistas/carreraTable.php');
+            include_once('vistas/footer.php');
+        }
+
+        function universidadTable(){
+            $query =$this->model_e->getUni();
+
+            include_once('vistas/header.php');
+            include_once('vistas/universidadTable.php');
+            include_once('vistas/footer.php');
+        }
+
+
+
+
+
+
+
+
+        
         function estudiante(){
             $data=NULL;
             if(isset($_REQUEST['id'])){
@@ -29,7 +54,7 @@
             include_once('vistas/estudiante.php');
             include_once('vistas/footer.php');
         }
-        
+        //vsta del inicio de sesion
         function login(){
             $data=NULL;
             if(isset($_REQUEST['id'])){
@@ -37,11 +62,31 @@
             }
             $query=$this->model_e->get();
             include_once('vistas/header.php');
-            //include_once('vistas/estudiante.php');
-            include_once('vistas/footer.php');
             include_once('vistas/login.php');
+            include_once('vistas/footer.php');
         }
-
+        //mandar llamar el registro carrera
+        function carrera(){
+            $data=NULL;
+            if(isset($_REQUEST['id_carrera'])){
+                $data=$this->model_e->get_id($_REQUEST['id_carrera']);    
+            }
+            $query=$this->model_e->get();
+            include_once('vistas/header.php');
+            include_once('vistas/carrera.php');
+            include_once('vistas/footer.php');
+        }
+        //mandar llamar el registro UNIVERSIDAD
+        function universidad(){
+            $data=NULL;
+            if(isset($_REQUEST['id_uni'])){
+                $data=$this->model_e->get_id($_REQUEST['id_uni']);    
+            }
+            $query=$this->model_e->get();
+            include_once('vistas/header.php');
+            include_once('vistas/universidad.php');
+            include_once('vistas/footer.php');
+        }
 
         //pasar datos al modelo y el modelo comuncia a la vista
         function get_datosE(){

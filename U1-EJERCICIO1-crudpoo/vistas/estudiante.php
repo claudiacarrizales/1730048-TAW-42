@@ -1,6 +1,6 @@
 <div class="container">
     <div class="jumbotron">
-        <h2>formulario registro</h2>
+        <h2><strong>Formulario registro</strong></h2>
         <!--FORMULARIO DEL REGISTRO DE ESTUDIANTES-->
     </div>
     <div class="col-md-6 col-md-offset-3">
@@ -74,7 +74,7 @@
                 <div class="form-group">
                     <div class="col-md-12 col-md-off-set-3">
                     <?php if($data['id']==""){ ?>
-                        <input type="submit" class="btn btn-primary form-control" name="" value="registrar">
+                        <input type="submit" class="btn btn-primary form-control" name="" value="Registrar">
                     <?php }  ?>
                     <?php if($data['id']!=""){ ?>
                     <input type="submit" class="btn btn-primary form-control" name="" value="Actualizar">

@@ -14,6 +14,27 @@
             $this->estudiantes=$fila;
             return  $this->estudiantes;
         }
+
+
+
+
+        function getCarrera(){
+            $sql= 'SELECT * FROM carrera';
+            $fila=$this->DB->query($sql);
+            $this->carrera=$fila;
+            return  $this->carrera;
+        }
+
+
+        function getUni(){
+            $sql= 'SELECT * FROM universidad';
+            $fila=$this->DB->query($sql);
+            $this->universidad=$fila;
+            return  $this->universidad;
+        }
+
+
+
         //insercioin de nuesvos estudiantes a la base de datos
         function create($data){
 

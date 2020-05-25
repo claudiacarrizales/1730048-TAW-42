@@ -22,12 +22,26 @@
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               <!--agregacion del inicio de sesion al header-->
-              <li><a href="index.php?m=login">Iniciar sesion</a></li>
+              <li class="active"><a href="index.php?m=login">Iniciar sesion</a></li>
+              <!--agregar al menu registrar carrera-->
+              <li class="active"><a href="index.php?m=carrera">Nueva carrera</a></li>
+              <!--agregar al menu registrar universidad-->
+              <li class="active"><a href="index.php?m=universidad">Nueva universidad</a></li>
 
 
               <li class="active"><a href="index.php?m=estudiante">Nuevo registro</a></li>
+
               <li class="dropdown">
-                <a href="index.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Listar <span class="caret"></span></a>
+                <a href="index.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Registros estudiantes<span class="caret"></span></a>
+              </li>
+
+              <li class="dropdown">
+                <a href="index.php?m=carreraTable" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Registros carrera<span class="caret"></span></a>
+              </li>
+
+
+              <li class="dropdown">
+                <a href="index.php?m=universidadTable" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Registros universidad<span class="caret"></span></a>
               </li>
             </ul>
           </div><!--/.nav-collapse -->
