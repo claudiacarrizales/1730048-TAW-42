@@ -4,8 +4,8 @@ class Database
   //informacioin para la conexion de la base de datos al rpigrama en modo local
     private static $dbName = 'ejercicio' ;
     private static $dbHost = 'localhost' ;
-    private static $dbUsername = 'root';
-    private static $dbUserPassword = '';
+    private static $dbUsername = 'admin';
+    private static $dbUserPassword = '5e6847ce9a2862a305e2d820e3eae97858d20168bc6d4b9f';
      
     private static $cont  = null;
      
