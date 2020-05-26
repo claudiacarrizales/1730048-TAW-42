@@ -5,7 +5,7 @@
     <!--Cuerpo de la tabla donde se visualizará la informacion la cual es de los estudiantes--> 
     </div>
     <div class="container">
-        <table class="table table-striped ">
+        <table class="table table-striped" border="3">
             <thead>
                 <tr>
                     <!--nombres de las colunas de la tabla-->

@@ -5,7 +5,7 @@
     <!--Cuerpo de la tabla donde se visualizará la informacion la cual es de los estudiantes--> 
     </div>
     <div class="container">
-        <table class="table table-striped ">
+        <table class="table table-striped" border="3">
             <thead>
                 <tr>
                     <!--nombres de las colunas de la tabla-->
@@ -23,7 +23,7 @@
                         <th>
                             <!--por si quiere eliminar o iditar algun regstro ya realizado se utilizara el id para poder realizar la dicha operaciń-->
                             <a href="index.php?m=universidad&id_uni=<?php echo $data['id_uni']?>" class="btn btn-primary">Editar</a>
-                            <a href="index.php?m=confirmarDeleteUni&id_uni=<?php echo $data['id_uni']?>" class="btn btn-danger">Eliminar</a>
+                            <a href="index.php?m=confirmarDeleteUniversidad&id_uni=<?php echo $data['id_uni']?>" class="btn btn-danger">Eliminar</a>
                         </th>
                     </tr>
                 <?php endforeach; ?>
