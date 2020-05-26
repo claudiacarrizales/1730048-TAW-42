@@ -17,6 +17,8 @@
                     <th>edad</th>
                     <th>fecha</th>
                     <th>password</th>
+                    <th>carrera</th>
+                    <th>universidad</th>
                     <th>acción</th>
                 </tr>
             </thead>
@@ -32,6 +34,9 @@
                         <th><?php echo $data['edad']; ?></th>
                         <th><?php echo $data['fecha']; ?></th>
                         <th><?php echo $data['password']; ?></th>
+                        <th><?php echo $data['nombreC']; ?></th>
+                        <th><?php echo $data['nombreU']; ?></th>
+
                         <th>
                             <!--por si quiere eliminar o iditar algun regstro ya realizado se utilizara el id para poder realizar la dicha operaciń-->
                             <a href="index.php?m=estudiante&id=<?php echo $data['id']?>" class="btn btn-primary">Editar</a>

@@ -31,16 +31,16 @@
 
               <li class="active"><a href="index.php?m=estudiante">Nuevo registro</a></li>
 
-              <li class="dropdown">
+              <li class="active">
                 <a href="index.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Registros estudiantes<span class="caret"></span></a>
               </li>
 
-              <li class="dropdown">
+              <li class="active">
                 <a href="index.php?m=carreraTable" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Registros carrera<span class="caret"></span></a>
               </li>
 
 
-              <li class="dropdown">
+              <li class="active">
                 <a href="index.php?m=universidadTable" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Registros universidad<span class="caret"></span></a>
               </li>
             </ul>

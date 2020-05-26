@@ -66,9 +66,36 @@
                 <div class="form-group">
                     <label class=" col-sm-2 control-label" for="txt_pass">PASSWORD:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="txt_pass" value="<?php echo $data['password']; ?>">
+                        <input type="password" class="form-control" name="txt_pass" value="<?php echo $data['password']; ?>">
                     </div>
-                    
+                </div>
+
+                <div class="form-group">
+                    <label class=" col-sm-2 control-label" for="txt_pass">CARRERA:</label>
+                    <div class="col-sm-10">
+                        <?php
+                            echo '<select class="form-control" class="form-control"  name="carrera" id="tipo" >';
+
+                            foreach($queryC as $row => $item){
+                                echo '<option value="'.$item["id_carrera"].'">'.$item["nombre"].'</option>';
+                            }
+                            echo '</select>';
+                        ?>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class=" col-sm-3 control-label" for="txt_pass">UNIVERSIDAD:</label>
+                    <div class="col-sm-9">
+                        <?php
+                            echo '<select class="form-control" class="form-control"  name="universidad" id="tipoUni" >';
+
+                            foreach($queryU as $row => $item){
+                                echo '<option value="'.$item["id_uni"].'">'.$item["nombre"].'</option>';
+                            }
+                            echo '</select>';
+                        ?>
+                    </div>
                 </div>
 
                 <div class="form-group">

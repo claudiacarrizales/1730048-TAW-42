@@ -9,7 +9,7 @@
         }
         //seleccion de las consultas para el muetreo de los datos de la tablla de la base de datos en la tabla de la view
         function get(){
-            $sql= 'SELECT * FROM estudiante ORDER BY id DESC';
+            $sql= 'SELECT estudiante.*, carrera.nombre as nombreC, universidad.nombre as nombreU FROM estudiante INNER JOIN carrera ON estudiante.id_carrera=carrera.id_carrera INNER JOIN universidad ON universidad.id_uni=estudiante.id_uni ORDER BY id DESC';
             $fila=$this->DB->query($sql);
             $this->estudiantes=$fila;
             return  $this->estudiantes;
@@ -39,18 +39,17 @@
         function create($data){
 
             $this->DB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql="INSERT INTO estudiante(id,cedula,nombre,apellidos,promedio,edad,fecha, password)VALUES (?,?,?,?,?,?,?,?)";
+            $sql="INSERT INTO estudiante(cedula,nombre,apellidos,promedio,edad,fecha, password, id_uni, id_carrera)VALUES (?,?,?,?,?,?,?,?,?)";
 
             $query = $this->DB->prepare($sql);
-            $query->execute(array($data['id'],$data['cedula'],$data['nombre'],$data['apellidos'],$data['promedio'],$data['edad'],$data['fecha'],$data['password']));
+            $query->execute(array($data['cedula'],$data['nombre'],$data['apellidos'],$data['promedio'],$data['edad'],$data['fecha'],$data['password'],$data['universidad'],$data['carrera']));
             Database::disconnect();       
-
         }
 
         //selleccion con el id de algun registro de la base de datos
         function get_id($id){
             $this->DB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "SELECT * FROM estudiante where id = ?";
+            $sql = "SELECT estudiante.*, carrera.nombre as nombreC, universidad.nombre as nombreU FROM estudiante INNER JOIN carrera ON estudiante.id_carrera=carrera.id_carrera INNER JOIN universidad ON universidad.id_uni=estudiante.id_uni where id = ?";
             $q = $this->DB->prepare($sql);
             $q->execute(array($id));
             $data = $q->fetch(PDO::FETCH_ASSOC);

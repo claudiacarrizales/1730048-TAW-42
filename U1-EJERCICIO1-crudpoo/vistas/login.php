@@ -18,7 +18,7 @@
                     <div class="form-group">
                         <label class=" col-sm-2 control-label" for="txt_contral">PASSWORD:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="txt_contral" value="">
+                            <input type="password" class="form-control" name="txt_contral" value="">
                         </div>         
                     </div>
 

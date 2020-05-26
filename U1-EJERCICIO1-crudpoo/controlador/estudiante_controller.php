@@ -37,19 +37,15 @@
         }
 
 
-
-
-
-
-
-
-        
         function estudiante(){
             $data=NULL;
             if(isset($_REQUEST['id'])){
                 $data=$this->model_e->get_id($_REQUEST['id']);    
             }
             $query=$this->model_e->get();
+            $queryC =$this->model_e->getCarrera();
+            $queryU =$this->model_e->getUni();
+
             include_once('vistas/header.php');
             include_once('vistas/estudiante.php');
             include_once('vistas/footer.php');
@@ -90,9 +86,8 @@
 
         //pasar datos al modelo y el modelo comuncia a la vista
         function get_datosE(){
-
             
-            $data['id']=$_REQUEST['txt_id'];
+            //$data['id']=$_REQUEST['txt_id'];
             $data['cedula']=$_REQUEST['txt_cedula'];
             $data['nombre']=$_REQUEST['txt_nombre'];
             $data['apellidos']=$_REQUEST['txt_apellidos'];
@@ -100,14 +95,15 @@
             $data['edad']=$_REQUEST['txt_edad'];
             $data['fecha']=$_REQUEST['txt_fecha'];
             $data['password']=$_REQUEST['txt_pass'];
+            $data['carrera']=$_REQUEST['carrera'];
+            $data['universidad']=$_REQUEST['universidad'];
 
-            if ($_REQUEST['id']=="") {
-                $this->model_e->create($data);
-            }
-            
-            if($_REQUEST['id']!=""){
+            // $this->model_e->create($data);
+            if (isset($_GET['id'])) {
                 $date=$_REQUEST['id'];
                 $this->model_e->update($data,$date);
+            }else{
+                $this->model_e->create($data);
             }
             
             header("Location:index.php");
