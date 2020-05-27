@@ -192,6 +192,47 @@
         <?php
         }
 
+        public function actualizarUserController(){
+            if (isset($_POST["nusuariotxtEditar"])){
+                $_POST["contratxtEditar"] = password_hash($_POST["contratxtEditar"],PASSWORD_DEFAULT);
+
+                $datosController = array("id"=>$_POST["idUserEditar"],"nusuario"=>$_POST["nusuariotxtEditar"],
+                "ausuario"=>$_POST["ausuariotxtEditar"],,"usuario"=>$_POST["usuariotxtEditar"],"contra"=>$_POST
+                ["contratxtEditar"],"email"=>$_POST["uemailtxtEditar"]);
+
+                //Enviar datos al modelo
+                if($respuesta == "success"){
+                    echo '
+                        <div class="col-md-6 mt-3">
+                            <div class="alert alert-success alert-dismissible">
+                            <button class="close" type="button" data-dismiss="alert" aria-hidden="true">x</
+                            button>
+                            <h5>
+                                <i class="icon fas fa-check"></i>
+                                !Exito!
+                            </h5>
+                            Usuario editado con exito.
+                        </div>
+                    </div>
+                    ';
+                } else {
+                    echo '
+                        <div class="col-md-6 mt-3">
+                            <div class="alert alert-danger alert-dismissible">
+                            <button class="close" type="button" data-dismiss="alert" aria-hidden="true">x</
+                            button>
+                            <h5>
+                                <i class="icon fas fa-ban"></i>
+                                !Error!
+                            </h5>
+                            Se ha producido un error al momento de editar el usuario, trate de nuevo.
+                        </div>
+                    </div>
+                    ';
+                }
+            }
+        }
+
     }
 
 ?>
