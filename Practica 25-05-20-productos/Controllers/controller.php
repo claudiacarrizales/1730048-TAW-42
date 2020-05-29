@@ -233,6 +233,45 @@
             }
         }
 
+
+
+        public function eliminarUserController(){
+            if (isset($_GET["idBorrar"])){
+                $respuesta = Datos::eliminarUserModel($datosController, "users");
+
+                //se recibe respuesta del modelo
+                if ($respuesta == "success") {
+                    echo '
+                        <div class="col-md-6 mt-3">
+                            <div class="alert alert-danger alert-dismissible">
+                            <button class="close" type="button" data-dismiss="alert" aria-hidden="true">x</
+                            button>
+                            <h5>
+                                <i class="icon fas fa-check"></i>
+                                !Error!
+                            </h5>
+                            Usuario eliminado con exito!
+                        </div>
+                    </div>
+                    ';
+                }else{
+                    echo '
+                        <div class="col-md-6 mt-3">
+                            <div class="alert alert-danger alert-dismissible">
+                                <button class="close" type="button" data-dismiss="alert" aria-hidden="true">x</
+                                button>
+                                <h5>
+                                    <i class="icon fas fa-ban"></i>
+                                    !Error!
+                                </h5>
+                                Se ha producido un error al momento de eliminar el usuario, trate de nuevo.
+                            </div>
+                        </div>
+                    ';
+                }
+            }
+        }
+
     }
 
 ?>
