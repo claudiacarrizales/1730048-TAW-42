@@ -457,7 +457,6 @@
             	$datoscontroller2=array("user"=>$_SESSION["id"],"cantidad"=>$_POST["stocktxtEditar"],"producto"=>$_POST["idProductEditar"],"note"=>$_SESSION["nombre_usuario"]."agrego/compro","reference"=>$_POST["referenciatxtEditar"]);
 					$respuesta2=Datos::instertarHistorialModel($datoscontroller2,"historial");
         		if ($respuesta=="success") {
-        			$datoscontroller2=
 					echo ' 
 						<div class="col-md-6 mt-3">
 							<div class="alert alert-success alert-dismissible">
@@ -488,9 +487,9 @@
         }
 
         /*Permite agregar productos al stock atraves del boton y un formulariopara agregar dicha canidad al producto se llama al modelo correspondiente para si apsar al contolador qye actulliza dicho modelo*/
-        public function addProductoController(){
+        public function addStockController(){
         	$datosController=$_GET["idProductAdd"];
-        	$repsuesta=Datos::editarProductoModel("products");
+        	$respuesta=Datos::editarProductoModel("products");
         	?>
         	<div class="col-md-6 mt-3">
 				<div class="card card-warning">
@@ -514,7 +513,186 @@
 				</div>
 			</div>
         	<?php
+		}
+		
+
+		public function actualizar1StockController(){
+			if (isset($_POST["addstocktxt"])){
+				$datosController = array("id"=>$_POST["idProductAdd"],"stock"=>$_POST["addstocktxt"]);
+				$respuesta = Datos::pushProductsModel($datosController,"products");
+				if ($respuesta == "success"){
+					$datosController2 = array("user"=>$_SESSION["id"],"cantidad"=>$_POST["addstocktxt"],"producto"=>$_POST
+					["idProductAdd"],"note"=>$_SESSION["nombre_usuario"],"agrego/compro","reference"=>$_POST
+					["referenciatxtadd"]);
+					$respuesta2 = Datos::insertarHistoriaModel($datosController2,"historial");
+					echo ' 
+						<div class="col-md-6 mt-3">
+							<div class="alert alert-success alert-dismissible">
+								<button class="close" type="button" data-miss="alert" aria-hidden="true">x</button>
+								<h5>
+									<i class="icon fas fa-check"></i>
+									Exito!
+								</h5>
+								Producto editado con éxito.
+							</div>
+						</div>
+					';
+					}else{
+						echo ' 
+							<div class="col-md-6 mt-3">
+								<div class="alert alert-danger alert-dismissible">
+									<button class="close" type="button" data-miss="alert" aria-hidden="true">x</button>
+									<h5>
+										<i class="icon fas fa-ban"></i>
+										Error!
+									</h5>
+									Se ha producido un error al momento de editar.
+								</div>
+							</div>
+						';
+				}
+			}
+		}
+
+		//Esta funcion actualiza y llama al modelo de la tabla producto a su bez inserta una nueva fila historial, si el updadte sle correcto elimina los productos entonces insetara la actualizacion en la tabla historial si todo sale bien mostrara un mensaje de error o de corrrecto dependiendo de la repsuesta/
+        public function actualizar2StockController(){
+        	if(isset($_POST["delstocktxt"])){
+        		$datosController=array("id"=>$_POST["idProductDel"],"stock"=>$_POST["delstocktxt"]);
+
+            	$respuesta = Datos::pullProductModel($datosController,"products");
+
+            	
+        		if ($respuesta=="success") {
+        			$datoscontroller2=array("user"=>$_SESSION["id"],"cantidad"=>$_POST["delstocktxt"],"producto"=>$_POST["idProductDel"],"note"=>$_SESSION["nombre_usuario"]."agrego/compro","reference"=>$_POST["delreferenciatxt"]);
+					$respuesta2=Datos::instertarHistorialModel($datoscontroller2,"historial");
+					echo ' 
+						<div class="col-md-6 mt-3">
+							<div class="alert alert-success alert-dismissible">
+								<button class="close" type="button" data-miss="alert" aria-hidden="true">x</button>
+								<h5>
+									<i class="icon fas fa-check"></i>
+									Exito!
+								</h5>
+								Stock disminuido con éxito.
+							</div>
+						</div>
+					';
+				}else{
+					echo ' 
+						<div class="col-md-6 mt-3">
+							<div class="alert alert-danger alert-dismissible">
+								<button class="close" type="button" data-miss="alert" aria-hidden="true">x</button>
+								<h5>
+									<i class="icon fas fa-ban"></i>
+									Error!
+								</h5>
+								Se ha producido un error al momento de restar.
+							</div>
+						</div>
+					';
+				}
+        	}
         }
+		public function delProductController(){
+			$datosController = $_GET["idProductDel"];
+			$respuesta = Datos::editarProductModel($datosController,"products");
+			?>
+			<div class="col-md-6 mt-3">
+				<div class="card card-danger">
+					<div class="card-header">
+						<h4><b>Eliminar</b> stock al producto</h4>
+					</div>
+					<div class="card-body">
+						<form method="post" action="index.php?action=inventario">
+							<div class="form-group">
+								<input type="hidden" name="idProductDel" class="form-control" value="<?php echo $respuesta
+								["id"]; ?>" required>
+							</div>
+							<div class="form-group">
+								<label for="codigotxtEditar">Stock: </label>
+								<input class="form-control" name="delstocktxt" id="delstocktxt" type="number" min="1"
+								max="<?php echo $respuesta["stock"];?>" value="<?php echo $respuesta["stock"];?>"
+								required placeholder="Stock de producto">
+							</div>
+							<div class="form-group">
+								<label for="referenciatxtdel">Motivo: </label>
+								<input class="form-control" name="referenciatxtdel" id="referenciatxtdel" type="text"
+								required placeholder="Referencia del producto">
+							</div>
+							<button class="btn btn-primary" type="submit">REalizar cambio</button>
+						</form>
+					</div>
+				</div>
+			</div>
+			<?php
+		}
+
+		public function vistaHistorialController(){
+			$respuesta = Datos::vistaHistorialModel("historial");
+			foreach ($respuesta as $row => $item) {
+				echo '
+					<tr>
+						<td>'.$item["usuario"].'</td>
+						<td>'.$item["producto"].'</td>
+						<td>'.$item["nota"].'</td>
+						<td>'.$item["cantidad"].'</td>
+						<td>'.$item["referencia"].'</td>
+						<td>'.$item["fecha"].'</td>
+					</tr>
+				';
+			}
+		}
+
+
+		public function vistaCategoriesController(){
+			$respuesta = Datos::vistaCategoriesModel("categories");
+			foreach ($respuesta as $row => $item) {
+				echo '
+					<tr>
+						<td>
+							<a href="index.php?action=categorias&idCategoryEditar='.$item["idc"].'" class="btn btn-warning
+							btn-sm btn-icon" title="Editar" data-toggle="tooltip"><i class="fa fa-edit"></i></a>
+						</td>
+						<td>
+							<a href="index.php?action=categorias&idBorrar='.$item["idc"].'" class="btn btn-danger
+							btn-sm btn-icon" title="Eliminar" data-toggle="tooltip"><i class="fa fa-trash"></i></a>
+						</td>
+						<td>'.$item["idc"].'</td>
+						<td>'.$item["ncategoria"].'</td>
+						<td>'.$item["dcategoria"].'</td>
+						<td>'.$item["fcategoria"].'</td>
+					</tr>
+				';
+			}
+		}
+
+		public function registrarCategoryController(){
+			?>
+			<div class="col-md-6 mt-3">
+				<div class="card card-primary">
+					<div class="card-header">
+						<h4><b>Registro</b> de categorias</h4>
+					</div>
+					<div class="card-body">
+						<form method="post" action="index.php?action=categorias">
+							<div class="form-group">
+								<label for="ncategoriatxt">Nombre de la Categoria: </label>
+								<input class="form-control" type="text" name="ncategoriatxt" id="ncategoriatxt"
+								placeholder="Ingrese el nombre de la categoria">
+							</div>
+							<div class="form-group">
+								<label for="dcategoriatxt">Descripcion de la Categoria: </label>
+								<input class="form-control" type="text" name="dcategoriatxt" id="dcategoriatxt"
+								placeholder="Ingrese la descripcion de la categoria">
+							</div>
+							<button class="btn btn-primary" type="submit">Agregar</button>
+						<form>
+					</div>
+				</div>
+			</div>
+			<?php
+		}
+
 
 	}
 
