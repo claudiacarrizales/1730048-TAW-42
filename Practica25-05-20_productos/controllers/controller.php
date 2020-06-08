@@ -279,25 +279,23 @@
 
         //Vista de usuarios
 		public  function vistaProductosController(){
-			$respuesta=Datos::vistaProductoModel("products");
-			foreach ($respuesta as $row => $item) {
-				echo '<tr>
-						<td><a href=index.php?action=inventario&idProductEditar='.$item["user_id"].'><button class="btn btn-warning btn-sm btn-icon "><i class="fa fa-edit"></i>Editar</button></td>
-
-						<td><a href=index.php?action=inventario&idBorrar='.$item["user_id"].'><button class="btn btn-danger btn-sm btn-icon"><i class="fa fa-thash"></i>Editar</button>Borrar</button></td>
-						<td>'.$item["id"].'</td>
-						<td>'.$item["codigo"].'</td>
-						<td>'.$item["producto"].'</td>
-						<td>'.$item["fecha"].'</td>
-						<td>'.$item["precio"].'</td>
-						<td>'.$item["stoc"].'</td>
-						<td>'.$item["categoria"].'</td>
-						<td>'.$item["precio"].'</td>
-						<td><a href=index.php?action=inventario&idProductAdd='.$item["user_id"].'><button class="btn btn-danger btn-sm btn-icon"><i class="fa fa-edit"></i>Agregar Stock</button></td>
-						<td><a href=index.php?action=inventario&idProductDel='.$item["user_id"].'><button class="btn btn-danger btn-sm btn-icon"><i class="fa fa-edit"></i>Quitar Stock</button></td>
-					</tr>';
-			}
-		}
+            $respuesta=Datos::vistaProductsModel("products");
+            foreach ($respuesta as $row => $item) {
+                echo '<tr>
+                        <td><a href=index.php?action=inventario&idProductEditar='.$item["user_id"].'><button class="btn btn-warning btn-sm btn-icon "><i class="fa fa-edit"></i>Editar</button></td>
+                        <td><a href=index.php?action=inventario&idBorrar='.$item["user_id"].'><button class="btn btn-danger btn-sm btn-icon"><i class="fa fa-thash"></i>Borrar</button></button></td>
+                        <td>'.$item["id"].'</td>
+                        <td>'.$item["codigo"].'</td>
+                        <td>'.$item["producto"].'</td>
+                        <td>'.$item["fecha"].'</td>
+                        <td>'.$item["precio"].'</td>
+                        <td>'.$item["stock"].'</td>
+                        <td>'.$item["categoria"].'</td>
+                        <td><a href=index.php?action=inventario&idProductAdd='.$item["user_id"].'><button class="btn btn-danger btn-sm btn-icon"><i class="fa fa-edit"></i>Agregar Stock</button></td>
+                        <td><a href=index.php?action=inventario&idProductDel='.$item["user_id"].'><button class="btn btn-danger btn-sm btn-icon"><i class="fa fa-edit"></i>Quitar Stock</button></td>
+                    </tr>';
+            }
+        }
 
 		/*--Este controlador se encarga de mostrar el formualrio al producto para registrase*/
 		public function registrarProductoController(){
@@ -315,7 +313,7 @@
 							</div>
 							<div class="form-group">
 								<label for="nombretxt">Nombre:</label>
-								<input  class="form-control" type="text" name="ausuariotxt" id="nombretxt" required>
+								<input  class="form-control" type="text" name="nombretxt" id="nombretxt" required>
 							</div>
 							<div class="form-group">
 								<label for="preciotxt">Precio:</label>
@@ -323,7 +321,7 @@
 							</div>
 							<div class="form-group">
 								<label for="stocktxt">Stock:</label>
-								<input  class="form-control" type="number" name="ucontratxt" id="stocktxt" required>
+								<input  class="form-control" type="number" name="stocktxt" id="stocktxt" required>
 							</div>
 							<div class="form-group">
 								<label for="motivotxt">Motivo:</label>
@@ -331,7 +329,7 @@
 							</div>
 							<div class="form-group">
 								<label for="categoria">Cateogíra::</label>
-								<select class="form-control" type="text" name="cateogria" id="cateogira" required>
+								<select class="form-control" type="text" name="categoria" id="categoria" required>
 									<?php
 										$respuesta_categoria= Datos::obtenerCategoryModel("categories");
 										foreach ($respuesta_categoria as $row => $item) {
@@ -358,12 +356,12 @@
 				//Almacenar en un array los valores de los text del metodo "registrarUserController"
 				$datosController=array("codigo"=>$_POST["codigotxt"],"precio"=>$_POST["preciotxt"],"stock"=>$_POST["stocktxt"],"categoria"=>$_POST["categoria"],"nombre"=>$_POST["nombretxt"]);
 
-				$respuesta=Datos::insertarProductoModel($datosController,"products");
+				$respuesta=Datos::insertarProductsModel($datosController,"products");
 
 				if ($respuesta=="success") {
-					$repsuesta3= Datos::ultimoProductoModel("products");
-					$datoscontroller2=array("user"=>$_SESSION["id"],"cantidad"=>$_POST["stocktxt"],"producto"=>$respuesta3["id"],"note"=>$_SESSION["nombre_usuario"]."agrego/compro","reference"=>$_POST["referenciatxt"]);
-					$respuesta2=Datos::instertarHistorialModel($datoscontroller2,"historial");
+					$respuesta3= Datos::ultimoProductsModel("products");
+					$datoscontroller2=array("user"=>$_SESSION["id"],"cantidad"=>$_POST["stocktxt"],"producto"=>$respuesta3["id"],"note"=>$_SESSION["nombre_usuario"]."agrego/compro","reference"=>$_POST["motivotxt"]);
+					$respuesta2=Datos::insertarHistorialModel($datoscontroller2,"historial");
 					echo ' 
 						<div class="col-md-6 mt-3">
 							<div class="alert alert-success alert-dismissible">
@@ -627,6 +625,42 @@
 			<?php
 		}
 
+		public function eliminarProductoController(){
+            if(isset($_GET["idBorrar"])){
+                $datosController=$_GET["idBorrar"];
+                //Manda parametros al modelo
+                $respuesta=Datos::eliminarProductoModel($datosController,"productos");
+                if ($respuesta=="success") {
+                    echo ' 
+                        <div class="col-md-6 mt-3">
+                            <div class="alert alert-success alert-dismissible">
+                                <button class="close" type="button" data-miss="alert" aria-hidden="true">x</button>
+                                <h5>
+                                    <i class="icon fas fa-check"></i>
+                                    Exito!
+                                </h5>
+                                Producto eliminado con éxito.
+                            </div>
+                        </div>
+                    ';
+                }else{
+                    echo ' 
+                        <div class="col-md-6 mt-3">
+                            <div class="alert alert-danger alert-dismissible">
+                                <button class="close" type="button" data-miss="alert" aria-hidden="true">x</button>
+                                <h5>
+                                    <i class="icon fas fa-ban"></i>
+                                    Error!
+                                </h5>
+                                Se ha producido un error al momento de eliminar.
+                            </div>
+                        </div>
+                    ';
+                }
+            }
+
+        }
+
 		public function vistaHistorialController(){
 			$respuesta = Datos::vistaHistorialModel("historial");
 			foreach ($respuesta as $row => $item) {
@@ -762,7 +796,7 @@
 			</div>
 			<?php
 		}
-		public funcion actualizarCategoryController(){
+		public function actualizarCategoryController(){
 			if (isset($_POST["ncategoriatxteditar"]) && isset($_POST["dcategoriatxteditar"])){
 				$datosController = array("id"=>$_POST["idCategoryEditar"],"nombre_categoria"=>$_POST
 				["ncategoriatxteditar"],"descripcion_categoria"=>$_POST["dcategoriatxteditar"]);
@@ -797,7 +831,7 @@
 			}
 		}
 
-		public function eliminar CategoryController(){
+		public function eliminarCategoryController(){
 			if(isset($_GET["idBorrar"])){
 				$datosController = $_GET["idBorrar"];
 				$respuesta = Datos::eliminarCategoryModel($datosController,"categories");
@@ -817,7 +851,7 @@
 				}else{
 					echo ' 
 						<div class="col-md-6 mt-3">
-							<div class="alert alert-danger alert-dismissible">
+							<divs class="alert alert-danger alert-dismissible">
 								<button class="close" type="button" data-miss="alert" aria-hidden="true">x</button>
 								<h5>
 									<i class="icon fas fa-ban"></i>

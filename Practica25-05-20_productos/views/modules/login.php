@@ -1,6 +1,7 @@
+<center>
 <div class="container">
     <div class="jumbotron">
-        <h2>Login</h2>
+        <h2>Iniciar Sesion</h2>
 
     </div>
     <div class="col-md-6 col-md-offset-3">
@@ -30,7 +31,7 @@
                 <div class="form-group">
                     <div class="col-md-12 col-md-off-set-3">
                 
-                        <input type="submit" class="btn btn-primary form-control" name="" value="Entrar">
+                        <input type="submit" class="btn btn-info form-control" name="" value="Entrar">
                 
                     </div>
                 </div>
@@ -39,7 +40,7 @@
         </div>
     </div>
 </div>
-
+</center>
 <?php
     $ingreso = new MvcController();
     $ingreso->ingresoUsuarioController();
