@@ -1,0 +1,14 @@
+body{
+	background: #74ebd5;  
+	background: -webkit-linear-gradient(to right, #ACB6E5, #74ebd5); 
+	background: linear-gradient(to right, #ACB6E5, #74ebd5); 
+}
+
+h2{
+	color: #0a97b0;
+	text-align: center;
+}
+
+table th{
+	text-align: center;
+}
