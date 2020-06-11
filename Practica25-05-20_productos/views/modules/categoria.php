@@ -35,8 +35,8 @@
 						<table id="example1" class="table table-striped dispaly">
 							<thead class="table-info"> 
 								<tr>
-									<th>¿Editar?</th>
-									<th>¿Eliminar?</th>
+									<th>Editar</th>
+									<th>Eliminar</th>
 									<th>Id</th>
 									<th>Nombre</th>
 									<th>Descripcion</th>

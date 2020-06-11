@@ -758,11 +758,11 @@
 				echo '
 					<tr>
 						<td>
-							<a href="index.php?action=categoria&idCategoryEditar='.$item["idc"].'" class="btn btn-warning
+							<a href="index.php?action=categoria&idCategoryEditar='.$item["idc"].'" class="btn btn-secondary
 							btn-sm btn-icon" title="Editar" data-toggle="tooltip"><i class="fa fa-edit"></i></a>
 						</td>
 						<td>
-							<a href="index.php?action=categoria&idBorrar='.$item["idc"].'" class="btn btn-danger
+							<a href="index.php?action=categoria&idBorrar='.$item["idc"].'" class="btn btn-secondary
 							btn-sm btn-icon" title="Eliminar" data-toggle="tooltip"><i class="fa fa-trash"></i></a>
 						</td>
 						<td>'.$item["idc"].'</td>
