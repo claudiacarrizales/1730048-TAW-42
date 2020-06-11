@@ -140,7 +140,9 @@
             $datosController = $_GET["idUserEditar"];
             //envío de datos al mododelo
             $respuesta = Datos::editarUsuarioModel($datosController,"users");
+            //formulario para el llenado
             ?>
+
             <div class="col-md-6 mt-3">
                 <div class="card card-warning">
                     <div class="card-header">
@@ -260,6 +262,7 @@
         	$respuesta_p=Datos::contarFilasModel("products"); 
         	$respuesta_c=Datos::contarFilasModel("categories"); 
         	//$respuesta_users=Datos::contrarFilasModel("users"); //historial
+        	//tablero visualizacion del cont
 			echo '
 				<div class="row">
 					<div class="col-lg-2 col-8">
@@ -344,6 +347,7 @@
 
 		/*--Este controlador se encarga de mostrar el formualrio al producto para registrase*/
 		public function registrarProductoController(){
+			//formulario registrar producto
 			?>
 			<div class="col-md-6 mt-6">
 				<div class="card card-primary">
@@ -698,7 +702,7 @@
             </div>
             <?php
         }
-
+        //ELIMINAR EL PRODUCTO
 		public function eliminarProductoController(){
             if(isset($_GET["idBorrar"])){
                 $datosController=$_GET["idBorrar"];
@@ -734,7 +738,7 @@
             }
 
         }
-
+        //VISTA DEL HISTORIAL 
 		public function vistaHistorialController(){
 			$respuesta = Datos::vistaHistorialModel("historial");
 			foreach ($respuesta as $row => $item) {
@@ -751,7 +755,7 @@
 			}
 		}
 
-
+//VISTA DE LA CATEGORIA LO QUE PODEMOS VISUALIZAR
 		public function vistaCategoriesController(){
 			$respuesta = Datos::vistaCategoriesModel("categories");
 			foreach ($respuesta as $row => $item) {
@@ -773,7 +777,7 @@
 				';
 			}
 		}
-
+		//formulario para el regisro de ctegoria
 		public function registrarCategoryController(){
 			?>
 			<div class="col-md-6 mt-3">
