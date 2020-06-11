@@ -1,7 +1,8 @@
 <center>
 <div class="container">
     <div class="jumbotron">
-        <strong><h2>INICIAR SESIÓN</h2></strong>
+        <strong><h1>INICIAR SESIÓN</h1></strong>
+
 
     </div>
     <div class="col-md-6 col-md-offset-3">
@@ -13,15 +14,16 @@
                     </div>
                 <?php } ?>
                 <div class="form-group">
-                    <label class=" col-sm-2 control-label" for="usuarioIngreso">Usuario:</label>
-                    <div class="col-sm-10">
+                    <!--<label class=" col-sm-2 control-label" for="usuarioIngreso">Usuario:</label>-->
+                    <i class="fas fa-user"></i>
+                    <div class="col-sm-8">
                         <input type="text" class="form-control" name="usuarioIngreso" placeholder="Usuario" required>
                     </div>
-                    
                 </div>
                 <div class="form-group">
-                    <label class=" col-sm-2 control-label" for="passwordIngreso">Contraseña:</label>
-                    <div class="col-sm-10">
+                    <!--<label class=" col-sm-2 control-label" for="passwordIngreso">Contraseña:</label>-->
+                    <i class="fas fa-key"></i>
+                    <div class="col-sm-8">
                         <input type="password" class="form-control" name="passwordIngreso" placeholder="Contraseña" required>
                     </div>
                     

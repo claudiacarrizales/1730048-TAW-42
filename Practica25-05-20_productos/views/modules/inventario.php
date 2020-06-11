@@ -20,7 +20,7 @@
 	}else if(isset($_GET['idProductAdd'])){
 		$inventario->addProductoController();
 	}else if(isset($_GET['idProductDel'])){
-		$inventario->delProductoController();
+		$inventario->delProductController();
 	}
 ?>
 <div class="container-fluid">
@@ -41,17 +41,17 @@
 						<table id="example1" class="table table-hover m-0 table-bordered">
 							<thead class="table-info"> 
 								<tr>
-									<th>¿Editar?</th>
-									<th>¿Eliminar?</th>
+									<th>Editar</th>
+									<th>Eliminar</th>
 									<th>Id</th>
 									<th>Código</th>
 									<th>Nombre</th>
-									<th>Fecha del producto</th>
+									<th>Fecha</th>
 									<th>Precio</th>
                                     <th>Stock</th>
 									<th>Categoria</th>
-									<th>¿Añadir Stock?</th>
-									<th>¿Eliminar Stock?</th>
+									<th>Añadir Stock</th>
+									<th>Eliminar Stock</th>
 								</tr>
 							</thead>
 							<tbody>

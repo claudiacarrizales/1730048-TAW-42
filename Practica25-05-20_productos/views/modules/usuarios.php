@@ -35,12 +35,12 @@
 						<table id="example1" class="table table-hover m-0 table-bordered">
 							<thead class="table-info"> 
 								<tr>
-									<th>¿Editar?</th>
-									<th>¿Eliminar?</th>
+									<th>Editar</th>
+									<th>Eliminar</th>
 									<th>Nombre</th>
 									<th>Apellido</th>
 									<th>Usuario</th>
-									<th>Correo Electornico</th>
+									<th>Email</th>
 									<th>Fecha inserción</th>
 								</tr>
 							</thead>

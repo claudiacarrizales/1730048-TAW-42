@@ -124,7 +124,7 @@
 		}
 
 		public function editarProductsModel($datosModel,$tabla){
-			$stmt = Conexion::conectar()->prepare("SELECT id_product AS 'id', code_producto AS 'codigo',
+			$stmt = Conexion::conectar()->prepare("SELECT id_product AS 'id', code_product AS 'codigo',
 			name_product AS 'nombre',price_product AS 'precio',stock FROM $tabla WHERE id_product = :id");
 			$stmt->bindParam(":id", $datosModel,PDO::PARAM_INT);
 			$stmt->execute();
@@ -159,7 +159,7 @@
 		}
 
 		public function actualizarProductsModel($datosModel,$tabla){
-			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET code_producto = :codigo,name_product=:nombre,
+			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET code_product = :codigo,name_product=:nombre,
 			price_product=:precio,id_category=:categoria, stock = :stock WHERE id_product = :id");
 			$stmt -> bindParam(":codigo",$datosModel["codigo"],PDO::PARAM_STR);
 			$stmt -> bindParam(":nombre",$datosModel["nombre"],PDO::PARAM_STR);
@@ -263,7 +263,7 @@
 		public function vistaCategoriesModel($tabla){
 			$stmt = Conexion::conectar()->prepare("SELECT id_category AS 'idc', name_category AS 'ncategoria',
 			description_category AS 'dcategoria', date_added AS 'fcategoria' FROM $tabla");
-			$tmt->execute();
+			$stmt->execute();
 			return $stmt->fetchAll();
 			$stmt->close();
 		}

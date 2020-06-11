@@ -43,9 +43,9 @@
 			$respuesta=Datos::vistaUsuarioModel("users");
 			foreach ($respuesta as $row => $item) {
 				echo '<tr>
-						<td><a href=index.php?action=usuarios&idUserEditar='.$item["user_id"].'><button class="btn btn-primary">Editar</button></td>
+						<td><a href=index.php?action=usuarios&idUserEditar='.$item["user_id"].'><button class="btn btn-secondary"><i class="fas fa-edit"></i></button></td>
 
-						<td><a href=index.php?action=usuarios&idBorrar='.$item["user_id"].'><button class="btn btn-primary">Borrar</button></td>
+						<td><a href=index.php?action=usuarios&idBorrar='.$item["user_id"].'><button class="btn btn-secondary"><i class="fas fa-trash"></i></button></td>
 						<td>'.$item["firstname"].'</td>
 						<td>'.$item["lastname"].'</td>
 						<td>'.$item["user_name"].'</td>
@@ -257,23 +257,68 @@
         /*Este controlador sirve para mostrale al usuaroo las cajas done se tiene inforamcion sobre los usuarios, prpductos, ventas registradas, asi com los movimientos que se tienen en el historial, y las ganacinas que se tienen*/
         public function contarFilas(){
         	$respuesta_users=Datos::contarFilasModel("users");
-        	//$respuesta_users=Datos::contrarFilasModel("users"); products
-        	//$respuesta_users=Datos::contrarFilasModel("users"); cateogries 
+        	$respuesta_p=Datos::contarFilasModel("products"); 
+        	$respuesta_c=Datos::contarFilasModel("categories"); 
         	//$respuesta_users=Datos::contrarFilasModel("users"); //historial
-        	echo '
-                <div class="col-lg-3 col-6">
-                    <div class="small-box bg-info">
-                        <div class="inner">
-                            <h3>'.$respuesta_users["filas"].'</h3>
-                            <p>Total de Usuarios</p>
-                        </div>
-                        <div class="icon">
-                            <i class="far fa-address-card"></i>
-                        </div>
-                        <a class="small-box-footer" href="index.php?action=usuarios">Más <i class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
+			echo '
+				<div class="row">
+					<div class="col-lg-2 col-8">
+						<div class="btn btn-secondary">
+							<div class="inner">
+								<h3>'.$respuesta_users["filas"].'</h3>
+								<p>Total Usuarios</p>
+							</div>
+							<div class="icon">
+								<i class="fas fa-users"></i>
+							</div>
+							<a class="small-box-footer" href="index.php?action=usuarios">Más <i class="fas fa-arrow-circle-right"></i></a>
+						</div>
+					</div>
                 ';
+                echo '
+                	<div class="col-lg-2 col-6">
+						<div class="btn btn-success">
+							<div class="inner">
+							<h3>.</h3>
+								<p>Realizar Venta</p>
+							</div>
+							<div class="icon">
+								<i class="fas fa-money-bill-alt"></i>
+							</div>
+							<a class="small-box-footer" href="index.php?action=inventario">Más <i class="fas fa-arrow-circle-right"></i></a>
+						</div>
+					</div>
+                ';
+                echo '
+					<div class="col-lg-2 col-6">
+						<div class="btn btn-danger">
+							<div class="inner">
+								<h3>'.$respuesta_c["filas"].'</h3>
+								<p>Total Categorias</p>
+							</div>
+							<div class="icon">
+								<i class="fas fa-file-invoice"></i>
+							</div>
+							<a class="small-box-footer" href="index.php?action=categoria">Más <i class="fas fa-arrow-circle-right"></i></a>
+						</div>
+					</div>
+				
+				';
+				echo '
+					<div class="col-lg-2 col-6">
+						<div class="btn btn-warning">
+							<div class="inner">
+								<h3>'.$respuesta_p["filas"].'</h3>
+								<p>Total Productos</p>
+							</div>
+							<div class="icon">
+								<i class="fas fa-shopping-bag"></i>
+							</div>
+							<a class="small-box-footer" href="index.php?action=inventario">Más <i class="fas fa-arrow-circle-right"></i></a>
+						</div>
+					</div>
+				</div>
+                ';         
         }
 
 
@@ -282,8 +327,8 @@
             $respuesta=Datos::vistaProductsModel("products");
             foreach ($respuesta as $row => $item) {
                 echo '<tr>
-                        <td><a href=index.php?action=inventario&idProductEditar='.$item["user_id"].'><button class="btn btn-warning btn-sm btn-icon "><i class="fa fa-edit"></i>Editar</button></td>
-                        <td><a href=index.php?action=inventario&idBorrar='.$item["user_id"].'><button class="btn btn-danger btn-sm btn-icon"><i class="fa fa-thash"></i>Borrar</button></button></td>
+                        <td><a href=index.php?action=inventario&idProductEditar='.$item["id"].'><button class="btn btn-secondary btn-sm btn-icon "><i class="fa fa-edit"></i></button></td>
+                        <td><a href=index.php?action=inventario&idBorrar='.$item["id"].'><button class="btn btn-secondary btn-sm btn-icon"><i class="fa fa-thash"></i><i class="fas fa-trash"></i></button></button></td>
                         <td>'.$item["id"].'</td>
                         <td>'.$item["codigo"].'</td>
                         <td>'.$item["producto"].'</td>
@@ -291,8 +336,8 @@
                         <td>'.$item["precio"].'</td>
                         <td>'.$item["stock"].'</td>
                         <td>'.$item["categoria"].'</td>
-                        <td><a href=index.php?action=inventario&idProductAdd='.$item["user_id"].'><button class="btn btn-danger btn-sm btn-icon"><i class="fa fa-edit"></i>Agregar Stock</button></td>
-                        <td><a href=index.php?action=inventario&idProductDel='.$item["user_id"].'><button class="btn btn-danger btn-sm btn-icon"><i class="fa fa-edit"></i>Quitar Stock</button></td>
+                        <td><a href=index.php?action=inventario&idProductAdd='.$item["id"].'><button class="btn btn-secondary  btn-sm btn-icon"><i class="fas fa-plus-circle"></i></button></td>
+                        <td><a href=index.php?action=inventario&idProductDel='.$item["id"].'><button class="btn btn-secondary  btn-sm btn-icon"><i class="fas fa-minus-circle"></i></button></td>
                     </tr>';
             }
         }
@@ -395,7 +440,7 @@
 		public function editarProductoController(){
 			$datosController = $_GET["idProductEditar"];
             //envío de datos al mododelo
-            $respuesta = Datos::editarProductoModel($datosController,"products");
+            $respuesta = Datos::editarProductsModel($datosController,"products");
 			?>
 			<div class="col-md-6 mt-6">
 				<div class="card card-primary">
@@ -407,27 +452,27 @@
 							<input  class="form-control" type="hidden" name="idProductEditar" id="idProductEditar" value="<?php echo $respuesta["id"] ?>" required>
 							<div class="form-group">
 								<label for="codigotxtEditar">Codigo:</label>
-								<input  class="form-control" type="text" name="codigotxt" id="codigotxt" value="<?php echo $respuesta["codigo"] ?>" required>
+								<input  class="form-control" type="text" name="codigotxtEditar" id="codigotxtEditar" value="<?php echo $respuesta["codigo"] ?>" required>
 							</div>
 							<div class="form-group">
 								<label for="nombretxt">Nombre:</label>
-								<input  class="form-control" type="text" name="ausuariotxt" id="nombretxt" value="<?php echo $respuesta["nombre"] ?>" required>
+								<input  class="form-control" type="text" name="nombretxtEditar" id="nombretxtEditar" value="<?php echo $respuesta["nombre"] ?>" required>
 							</div>
 							<div class="form-group">
 								<label for="preciotxt">Precio:</label>
-								<input  class="form-control" type="number" min="1" name="preciotxt" id="preciotxt" value="<?php echo $respuesta["precio"] ?>" required> 
+								<input  class="form-control" type="number" min="1" name="preciotxtEditar" id="preciotxtEditar" value="<?php echo $respuesta["precio"] ?>" required> 
 							</div>
 							<div class="form-group">
 								<label for="stocktxt">Stock:</label>
-								<input  class="form-control" type="number" name="ucontratxt" id="stocktxt"  required>
+								<input  class="form-control" type="number" name="stocktxtEditar" id="stocktxtEditar" value="<?php echo $respuesta["stock"] ?>"  required>
 							</div>
 							<div class="form-group">
 								<label for="motivotxt">Motivo:</label>
-								<input  class="form-control" type="text" name="motivotxt" id="motivotxt" value="<?php echo $respuesta["motivo"] ?>" required>
+								<input  class="form-control" type="text" name="referenciatxtEditar" id="referenciatxtEditar" value="<?php echo $respuesta["motivo"] ?>" required>
 							</div>
 							<div class="form-group">
-								<label for="categoria">Cateogíra:</label>
-								<select class="form-control" type="text" name="cateogria" id="cateogira" required>
+								<label for="categoria">Categoría:</label>
+								<select class="form-control" type="text" name="categoriaEditar" id="categoriaEditar" required>
 									<?php
 										$respuesta_categoria= Datos::obtenerCategoryModel("categories");
 										foreach ($respuesta_categoria as $row => $item) {
@@ -450,10 +495,10 @@
 		public function actualizarProductoController(){
         	if(isset($_POST["codigotxtEditar"])){
         		$datosController=array("id"=>$_POST["idProductEditar"],"codigo"=>$_POST["codigotxtEditar"],"precio"=>$_POST["preciotxtEditar"],"stock"=>$_POST["stocktxtEditar"],"categoria"=>$_POST["categoriaEditar"],"nombre"=>$_POST["nombretxtEditar"]);
-
-            	$respuesta = Datos::actualizarProductModel($datosController,"products");
+				
+            	$respuesta = Datos::actualizarProductsModel($datosController,"products");
             	$datoscontroller2=array("user"=>$_SESSION["id"],"cantidad"=>$_POST["stocktxtEditar"],"producto"=>$_POST["idProductEditar"],"note"=>$_SESSION["nombre_usuario"]."agrego/compro","reference"=>$_POST["referenciatxtEditar"]);
-					$respuesta2=Datos::instertarHistorialModel($datoscontroller2,"historial");
+				$respuesta2=Datos::insertarHistorialModel($datoscontroller2,"historial");
         		if ($respuesta=="success") {
 					echo ' 
 						<div class="col-md-6 mt-3">
@@ -521,8 +566,8 @@
 				if ($respuesta == "success"){
 					$datosController2 = array("user"=>$_SESSION["id"],"cantidad"=>$_POST["addstocktxt"],"producto"=>$_POST
 					["idProductAdd"],"note"=>$_SESSION["nombre_usuario"],"agrego/compro","reference"=>$_POST
-					["referenciatxtadd"]);
-					$respuesta2 = Datos::insertarHistoriaModel($datosController2,"historial");
+					["addreferenciatxt"]);
+					$respuesta2 = Datos::insertarHistorialModel($datosController2,"historial");
 					echo ' 
 						<div class="col-md-6 mt-3">
 							<div class="alert alert-success alert-dismissible">
@@ -557,12 +602,12 @@
         	if(isset($_POST["delstocktxt"])){
         		$datosController=array("id"=>$_POST["idProductDel"],"stock"=>$_POST["delstocktxt"]);
 
-            	$respuesta = Datos::pullProductModel($datosController,"products");
+            	$respuesta = Datos::pullProductsModel($datosController,"products");
 
             	
         		if ($respuesta=="success") {
-        			$datoscontroller2=array("user"=>$_SESSION["id"],"cantidad"=>$_POST["delstocktxt"],"producto"=>$_POST["idProductDel"],"note"=>$_SESSION["nombre_usuario"]."agrego/compro","reference"=>$_POST["delreferenciatxt"]);
-					$respuesta2=Datos::instertarHistorialModel($datoscontroller2,"historial");
+        			$datoscontroller2=array("user"=>$_SESSION["id"],"cantidad"=>$_POST["delstocktxt"],"producto"=>$_POST["idProductDel"],"note"=>$_SESSION["nombre_usuario"]."agrego/compro","reference"=>$_POST["referenciatxtdel"]);
+					$respuesta2=Datos::insertarHistorialModel($datoscontroller2,"historial");
 					echo ' 
 						<div class="col-md-6 mt-3">
 							<div class="alert alert-success alert-dismissible">
@@ -593,7 +638,7 @@
         }
 		public function delProductController(){
 			$datosController = $_GET["idProductDel"];
-			$respuesta = Datos::editarProductModel($datosController,"products");
+			$respuesta = Datos::editarProductsModel($datosController,"products");
 			?>
 			<div class="col-md-6 mt-3">
 				<div class="card card-danger">
@@ -625,11 +670,40 @@
 			<?php
 		}
 
+		//Permite agregar productos al stock atraves del boton y un formulariopara agregar dicha canidad al producto se llama al modelo correspondiente para si apsar al contolador qye actulliza dicho modelo/
+        public function addProductoController(){
+            $datosController=$_GET["idProductAdd"];
+            $respuesta=Datos::editarProductsModel($datosController,"products");
+            ?>
+            <div class="col-md-6 mt-3">
+                <div class="card card-warning">
+                    <div class="card-header">
+                        <h4><b>Agregar</b> stock de Productos </h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" action="index.php?action=inventario">
+                            <input  class="form-control" type="hidden" name="idProductAdd" id="idProductAdd" value="<?php echo $respuesta["id"] ?>" required>
+                            <div class="form-group">
+                                <label for="stocktxt">Stock:</label>
+                                <input  class="form-control" type="number" name="addstocktxt" min="1" value="1" id="addstocktxt" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="motivotxt">Motivo:</label>
+                                <input  class="form-control" type="text" name="addreferenciatxt" id="motivotxt"  required>
+                            </div>
+                            <button class="btn btn-primary" type="submit">Guardar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <?php
+        }
+
 		public function eliminarProductoController(){
             if(isset($_GET["idBorrar"])){
                 $datosController=$_GET["idBorrar"];
                 //Manda parametros al modelo
-                $respuesta=Datos::eliminarProductoModel($datosController,"productos");
+                $respuesta=Datos::eliminarProductsModel($datosController,"products");
                 if ($respuesta=="success") {
                     echo ' 
                         <div class="col-md-6 mt-3">
@@ -684,11 +758,11 @@
 				echo '
 					<tr>
 						<td>
-							<a href="index.php?action=categorias&idCategoryEditar='.$item["idc"].'" class="btn btn-warning
+							<a href="index.php?action=categoria&idCategoryEditar='.$item["idc"].'" class="btn btn-warning
 							btn-sm btn-icon" title="Editar" data-toggle="tooltip"><i class="fa fa-edit"></i></a>
 						</td>
 						<td>
-							<a href="index.php?action=categorias&idBorrar='.$item["idc"].'" class="btn btn-danger
+							<a href="index.php?action=categoria&idBorrar='.$item["idc"].'" class="btn btn-danger
 							btn-sm btn-icon" title="Eliminar" data-toggle="tooltip"><i class="fa fa-trash"></i></a>
 						</td>
 						<td>'.$item["idc"].'</td>
@@ -708,7 +782,7 @@
 						<h4><b>Registro</b> de categorias</h4>
 					</div>
 					<div class="card-body">
-						<form method="post" action="index.php?action=categorias">
+						<form method="post" action="index.php?action=categoria">
 							<div class="form-group">
 								<label for="ncategoriatxt">Nombre de la Categoria: </label>
 								<input class="form-control" type="text" name="ncategoriatxt" id="ncategoriatxt"
@@ -731,7 +805,7 @@
 			if(isset($_POST["ncategoriatxt"]) && isset($_POST["dcategoriatxt"])){
 				$datosController = array("nombre_categoria"=>$_POST["ncategoriatxt"],
 				"descripcion_categoria"=>$_POST["dcategoriatxt"]);
-				$respuesta = DAtos::insertarCategoryModel($datosController,"categories");
+				$respuesta = Datos::insertarCategoryModel($datosController,"categories");
 				if ($respuesta=="success") {
 					echo ' 
 						<div class="col-md-6 mt-3">
@@ -772,7 +846,7 @@
 						<h4><b>Editor</b> de categorias</h4>
 					</div>
 					<div class="card-body">
-						<form method="post" action="index.php?action=categorias">
+						<form method="post" action="index.php?action=categoria">
 							<div class="form-group">
 								<input type="hidden" name="idCategoryEditar" class="form-control" value="<?php
 								echo $respuesta["id"]; ?>" required>

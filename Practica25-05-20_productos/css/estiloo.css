@@ -9,6 +9,10 @@ h2{
 	text-align: center;
 }
 
+h1{
+	font-weight: bold;
+}
+
 table th{
 	text-align: center;
 }
