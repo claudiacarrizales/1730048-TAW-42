@@ -227,17 +227,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 		// MODELO PARA EL TABLERO //
         /*-- Este modelo permite conocer el numero de filas en determinada tabla, se utiliza para mostrar información en el tablero --*/
         public function contarFilasModel($tabla) {
@@ -247,13 +236,6 @@
             $stmt->close();
 		}
 		
-
-
-
-
-
-
-
 
 
 
@@ -323,7 +305,45 @@
 			return $stmt->fetchAll();
 		}
 
+		//*****************************************************************************************
+		public function pullProductsMode($datos, $tabla){
+        	$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET stock = stock + :stock WHERE id_product = :id AND stock >= :stock");
+        	$stmt->bindParam(":stock", $datos["stock"], PDO::PARAM_INT);
+        	$stmt->bindParam(":id", $datos["id"], PDO::PARAM_INT);
+        	if($stmt->execute()){
+        		return "success";
+        	}else{
+        		return "error";
+        	}
 
+        	$stmt->close();
+        }
+
+		public function insertarVentaModel($datosModel,$tabla) {
+			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (producto, cantidad, precio_unidad, total, fecha) VALUES (:producto, :cantidad, :precio_unidad, :total, :fecha)");
+			
+            $stmt -> bindParam(":producto",$datosModel["producto"], PDO::PARAM_STR);
+            $stmt -> bindParam(":cantidad",$datosModel["cantidad"], PDO::PARAM_INT);
+            $stmt -> bindParam(":precio_unidad", $datosModel["precio_unidad"],  PDO::PARAM_STR);
+            $stmt -> bindParam(":total",  $datosModel["total"],   PDO::PARAM_STR);
+			$stmt -> bindParam(":fecha",   $datosModel["fecha"],    PDO::PARAM_STR);
+			
+            if ($stmt->execute()) {
+                return "success";
+            } else {
+                return "error";
+            }
+            $stmt->close();
+		}
+		
+
+
+		public function vistaVentasModel(){
+        	$stmt = Conexion::conectar()->prepare("SELECT * FROM sales");
+        	$stmt -> execute();
+        	return $stmt->fetchAll();
+        	$stmt -> close();
+		}
 
 
 	}

@@ -377,7 +377,7 @@
 								<input  class="form-control" type="text" name="motivotxt" id="motivotxt" required>
 							</div>
 							<div class="form-group">
-								<label for="categoria">Cateogíra::</label>
+								<label for="categoria">Categoría:</label>
 								<select class="form-control" type="text" name="categoria" id="categoria" required>
 									<?php
 										$respuesta_categoria= Datos::obtenerCategoryModel("categories");
@@ -666,7 +666,7 @@
 								<input class="form-control" name="referenciatxtdel" id="referenciatxtdel" type="text"
 								required placeholder="Referencia del producto">
 							</div>
-							<button class="btn btn-primary" type="submit">REalizar cambio</button>
+							<button class="btn btn-primary" type="submit">Realizar cambio</button>
 						</form>
 					</div>
 				</div>
@@ -943,6 +943,58 @@
 			}
 		}
 
+//****************************************************************************************************
+		//Vista de VENTA
+		public function vistaProductsController_ventas(){ //Crea la función para visualizar los productos que están registrados
+			$respuesta = Datos::vistaProductsModel("products"); 		
+			return $respuesta;
+		}
+
+
+		public function update_products(){	
+
+			if( isset($_POST['datos_ocultos']) ){
+
+
+				$datos=json_decode($_POST['datos_ocultos']);
+
+
+				for($i=0; $i < sizeof($datos); $i++ )
+				{
+					$datosModel = array('stock' => ($datos[$i][2] * -1),
+										'id' => $datos[$i][0]);
+
+					Datos::pullProductsMode($datosModel, "products");
+
+					$datosModel = array('producto' => $datos[$i][1],
+										'cantidad' => $datos[$i][2],
+										'precio_unidad' => $datos[$i][4],
+										'total' => ($datos[$i][4] * $datos[$i][2]),
+										'fecha' => date("Y-m-d H:i:s") );
+					
+					Datos::insertarVentaModel($datosModel, "sales");
+				}
+
+			}
+
+
+		}
+
+
+
+		public function vistaVentasController(){
+        	$respuesta = Datos::vistaVentasModel();
+        	foreach ($respuesta as $row => $item) {
+        		echo '
+        			<tr>
+        				<td>'.$item["producto"].'</td>
+        				<td>'.$item["cantidad"].'</td>
+        				<td>'.$item["precio_unidad"].'</td>
+        				<td>'.$item["total"].'</td>
+        				<td>'.$item["fecha"].'</td>
+        			</tr>';
+        	}
+		}
 
 	}
 

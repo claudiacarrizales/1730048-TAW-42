@@ -11,6 +11,8 @@
 	$inventario->eliminarProductoController();
 	$inventario->actualizar1StockController();
 	$inventario->actualizar2StockController();
+
+	
 	/*Se verifica que el usuario haya pulsado sobre el boton de registro de registar o editar para mostrarle su resperivo formulario*/
 
 	if(isset($_GET['registar'])){
@@ -21,6 +23,8 @@
 		$inventario->addProductoController();
 	}else if(isset($_GET['idProductDel'])){
 		$inventario->delProductController();
+	}else if(isset($_GET['idVenta'])){
+		$inventario->addVentaController();
 	}
 ?>
 <div class="container-fluid">
