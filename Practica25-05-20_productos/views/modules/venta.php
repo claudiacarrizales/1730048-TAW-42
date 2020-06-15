@@ -21,7 +21,7 @@ $users->update_products();
             <!-- Default box -->
             <div class="card card-success">
               <div class="card-header row">
-                  <h3 class="text-light "><strong> PUNTO DE VENTA</strong></h3>
+                  <h3 class="text-light "><strong><i class="fas fa-cash-register"></i> PUNTO DE VENTA</strong></h3>
               </div>
                 
               <div class="card-body">
@@ -63,7 +63,7 @@ $users->update_products();
                    <div class="col-8">
                        <label for="">cantidad de productos: </label> <span id="span_totalproductos"> </span> 
                    </div> 
-                  <div class="col-4">
+                  <div class="col-8">
                         <label for="">Subtotal:</label> $ <span id="span_subtotal"> </span> <br>
                         <label for="">IVA (18%):</label> $ <span id="span_iva"> </span>  <br>
 
@@ -82,7 +82,7 @@ $users->update_products();
 
                         
 
-                        <button   type="submit" class="btn btn-default"> <i class="fa fa-credit-card" aria-hidden="true"></i> Pagar</button>
+                        <button   type="submit" class="btn btn-default"> <i class="fas fa-money-bill-wave" style="width:140px"></i>Pagar</button>
 
                         </form>
 
@@ -106,7 +106,7 @@ $users->update_products();
       <div class="container-fluid">
         <div class="card card-success">
           <div class="card-header">
-            <h3 class="card-title"><strong>PRODUCTOS</strong></h3>
+            <h3 class="card-title"><strong><i class="fas fa-file-alt"></i> LISTA DE PRODUCTOS</strong></h3>
           </div>
           <div class="card-body">
             <div id="example2-wrapper" class="dataTables_wrapper dt-botstrap4">
@@ -155,7 +155,7 @@ $users->update_products();
         <div class="container-fluid">
         <div class="card card-success">
           <div class="card-header">
-            <h3 class="card-title"><strong>VENTAS REALIZADAS</strong></h3>
+            <h3 class="card-title"><strong><i class="fas fa-chart-bar"></i> VENTAS REALIZADAS</strong></h3>
           </div>
           <div class="card-body">
             <div id="example2-wrapper" class="dataTables_wrapper dt-botstrap4">
@@ -166,7 +166,7 @@ $users->update_products();
                       <tr>
                         <th>Producto</th>
                         <th>Cantidad</th>
-                        <th>Precio Unidad</th>
+                        <th>Precio unitario</th>
                         <th>Total</th>
                         <th>Fecha</th>
                         
@@ -279,8 +279,7 @@ $users->update_products();
           var total_productos = 0;
           var total_precio = 0;
 
-          for(var i=0; i < productos_a_vender.length; i++)
-          {
+          for(var i=0; i < productos_a_vender.length; i++){
              total_productos = total_productos + productos_a_vender[i][2];
              total_precio = total_precio +  (productos_a_vender[i][2] * productos_a_vender[i][4] );
           }
@@ -403,8 +402,8 @@ $users->update_products();
             mywindow.document.write(document.getElementById(elem).innerHTML);
             mywindow.document.write('</body></html>');
 
-            mywindow.document.close(); // necessary for IE >= 10
-            mywindow.focus(); // necessary for IE >= 10*/
+            mywindow.document.close(); 
+            mywindow.focus();
 
             mywindow.print();
             mywindow.close();
