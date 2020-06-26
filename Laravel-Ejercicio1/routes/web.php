@@ -2,6 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
+
+//vista para el controlador de empleado
+Route::resource('empleados','empleadosController');
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
