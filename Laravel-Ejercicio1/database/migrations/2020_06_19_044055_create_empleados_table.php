@@ -21,8 +21,10 @@ class CreateEmpleadosTable extends Migration
             $table->string('email',50)->unique();
             $table->enum('sexo',['masculino','femenino', 'no definido']);
             $table->enum('estado_civil',['soltero','casado']);
-            $table->integer('telefono');
+            $table->string('telefono');
             $table->timestamps();
+            $table->unsignedBigInteger('Fk_Departamento');
+            $table->foreign('Fk_Departamento')->references('idD')->on('departamentos');
         });
     }
 

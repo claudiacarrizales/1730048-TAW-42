@@ -94,6 +94,17 @@
                             <input type="text" id="telefono" name="telefono" required="required" class="form-control">
                         </div>
                     </div>
+                    <div class="item form-group">
+						<label class="col-form-label col-md-3 col-sm-3 label-align" for="Departamento">Departamento <spam class="required">*</spam>
+                        </label>
+						<div class="col-md-6 col-sm-6">
+                        <select class="form-control col-md-6 col-sm-6" type="text" name="departamento" id="departamento" required>
+							@foreach ($Departamentos as $departamento) 
+							    <option value="{{$departamento->idD}}">{{$departamento->nombre}}</option>
+                            @endforeach
+                        </select>
+                        </div>
+					</div>
                     <div class="In_solid"></div>
                     <div class="Item form-group">
                         <div class="col-md-6 col-sm-6 offset-md-3">

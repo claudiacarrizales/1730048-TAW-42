@@ -80,6 +80,12 @@
                                         <li><a href="{{url('empleados')}}">Consultar Empledados</a></li>
                                     </ul>
                                 </li>
+                                <li><a><i class="fas fa-user-shield"></i>&nbsp;&nbsp;&nbsp;&nbsp;Departamentos<span style="float: right" class="fas fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="{{url('departamentos/create')}}">Agregar Departamentos</a></li>
+                                        <li><a href="{{url('departamentos')}}">Consultar Departamentos</a></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </div>
                     </div>
